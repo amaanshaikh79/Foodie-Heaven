@@ -1,24 +1,11 @@
 import { useState } from "react"
 
-type MenuItem = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  isVeg: boolean;
-  rating: number;
-}
-
-type MenuData = {
-  [key: string]: MenuItem[];
-}
+// TypeScript types removed for JS compatibility
 import "../css/Menu.css"
 
 const Menu = () => {
   // Sample menu data - replace with your actual menu items
-  const menuData: MenuData = {
+  const menuData = {
     "Popular": [
       {
         id: 1,
@@ -273,23 +260,23 @@ const Menu = () => {
     ]
   }
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("Popular")
-  const [cart, setCart] = useState<(MenuItem & { quantity: number })[]>([])
-  const [searchQuery, setSearchQuery] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState("Popular")
+  const [cart, setCart] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
 
   const categories = Object.keys(menuData)
 
   // Filter items based on search query
-  const getFilteredItems = (): MenuItem[] => {
+  const getFilteredItems = () => {
     const items = menuData[selectedCategory]
     if (!searchQuery) return items
-    return items.filter((item: MenuItem) => 
+    return items.filter((item) => 
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }
 
-  const addToCart = (item: MenuItem) => {
+  const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id)
     if (existingItem) {
       setCart(cart.map((cartItem) =>
@@ -302,11 +289,11 @@ const Menu = () => {
     }
   }
 
-  const getCartTotal = (): number => {
+  const getCartTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0)
   }
 
-  const getCartItemCount = (): number => {
+  const getCartItemCount = () => {
     return cart.reduce((count, item) => count + item.quantity, 0)
   }
 

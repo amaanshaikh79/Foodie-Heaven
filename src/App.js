@@ -1,11 +1,11 @@
 import { Route,Routes } from 'react-router-dom'
 import './App.css'
-import Home from './Pages/Home'
-import Contact from './Pages/Contact'
-import AboutUs from './Pages/AboutUs'
-import Navbar from './Pages/Navbar'
-import Footer from './Pages/Footer'
-import Menu from './Pages/Menu'
+import Home from './Pages/Home.js'
+import Contact from './Pages/Contact.js'
+import AboutUs from './Pages/AboutUs.js'
+import Navbar from './Pages/Navbar.js'
+import Footer from './Pages/Footer.js'
+import Menu from './Pages/Menu.js'
 
 
 function App() {
