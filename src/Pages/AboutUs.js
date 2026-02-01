@@ -7,7 +7,7 @@ const AboutUs = () => {
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero-content">
-          <h1 className="about-title">About Foodie Heaven</h1>
+          <h1 className="about-title">About EPIC EATS</h1>
           <p className="about-subtitle">
             Bringing delicious food and happiness to your doorstep since 2020
           </p>
@@ -20,7 +20,7 @@ const AboutUs = () => {
           <div className="story-content">
             <h2 className="section-title">Our Story</h2>
             <p>
-              Foodie Heaven was born from a simple idea: everyone deserves access to 
+              EPIC EATS was born from a simple idea: everyone deserves access to 
               delicious, quality food from the best restaurants, delivered right to 
               their door. What started as a small operation in Ahmedabad has grown 
               into a trusted food delivery service serving thousands of happy customers.

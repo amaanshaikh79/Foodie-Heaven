@@ -10,7 +10,7 @@ const Home = () => {
       <div className="hero">
 
         <div className="hero-text">
-          <h1 className="brand">Foodie Heaven</h1>
+          <h1 className="brand">EPIC EATS</h1>
 
           <h2>
             Delicious Food <br /> Delivered To Your Door

@@ -1,0 +1,127 @@
+/* Page background */
+.register-container {
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  padding: 20px;
+}
+
+/* Card */
+.register-form {
+  background: #161616;
+  padding: 35px 30px;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 14px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: fadeUp 0.6s ease;
+}
+
+/* Title */
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Inputs */
+.register-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  font-size: 14px;
+  color: #ffffff;
+  background: #0f0f0f;
+  transition: all 0.25s ease;
+}
+
+/* Placeholder */
+.register-form input::placeholder {
+  color: #9a9a9a;
+}
+
+/* Input focus */
+.register-form input:focus {
+  outline: none;
+  border-color: #ff6347;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.25);
+  background: #0f0f0f;
+}
+
+/* Button */
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ff6347, #ff3b2f);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Button hover */
+.register-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 99, 71, 0.45);
+}
+
+/* Button active */
+.register-form button:active {
+  transform: scale(0.97);
+}
+
+/* Login text */
+.login-link {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.login-link a {
+  color: #ff6347;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Smooth entrance */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .register-form {
+    padding: 30px 22px;
+  }
+}
+.error-text {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

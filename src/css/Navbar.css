@@ -205,3 +205,50 @@
     font-size: 16px;
   }
 }
+/* 🔥 Sign Up Button */
+.signup-btn {
+  background: linear-gradient(135deg, #ff3b3b, #ff6b6b);
+  color: #ffffff !important;
+  padding: 10px 22px;
+  border-radius: 999px; /* pill shape */
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(255, 59, 59, 0.35);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.signup-btn:hover {
+  background: linear-gradient(135deg, #e02d2d, #ff3b3b);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 59, 59, 0.45);
+}
+
+/* Active */
+.signup-btn:active {
+  transform: scale(0.96);
+}
+
+/* 📱 Mobile menu Sign Up */
+@media (max-width: 768px) {
+  .signup-btn {
+    margin: 12px 20px;
+    width: calc(100% - 40px);
+    display: block;
+    font-size: 18px;
+  }
+}
+/* Logout button */
+.logout-btn {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #000;
+}
+

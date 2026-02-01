@@ -10,7 +10,7 @@ const Footer = () => {
         
         {/* Company Info */}
         <div className="footer-section">
-          <h3 className="footer-brand">Foodie Heaven</h3>
+          <h3 className="footer-brand">EPIC EATS</h3>
           <p className="footer-description">
             Delivering delicious food from the best restaurants straight to your doorstep.
           </p>
@@ -53,7 +53,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4 className="footer-heading">Contact Us</h4>
           <ul className="footer-contact">
-            <li>📧 support@foodieheaven.com</li>
+            <li>📧 support@epiceats.com</li>
             <li>📞 +91 98765 43210</li>
             <li>📍 Ahmedabad, Gujarat, India</li>
           </ul>
@@ -63,7 +63,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="footer-bottom">
-        <p>&copy; {currentYear} Foodie Heaven. All rights reserved.</p>
+        <p>&copy; {currentYear} EPIC EATS. All rights reserved.</p>
         <p className="made-with">Made with ❤️ for food lovers</p>
       </div>
     </footer>
