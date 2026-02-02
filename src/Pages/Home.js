@@ -18,7 +18,7 @@ const Home = () => {
 
           <p>
             Order your favourite meals from top restaurants near you.
-            Fast delivery, fresh food and best prices only on Foodie Heaven.
+            Fast delivery, fresh food and best prices only on EPIC EATS.
           </p>
 
           <div className="hero-buttons">
@@ -39,7 +39,7 @@ const Home = () => {
       {/* Features */}
       <div className="features">
 
-        <h3>Why Choose Foodie Heaven?</h3>
+        <h3>Why Choose EPIC EATS?</h3>
 
         <div className="feature-cards">
 

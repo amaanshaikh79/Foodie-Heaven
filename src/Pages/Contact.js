@@ -12,14 +12,14 @@ const Contact = () => {
 
   const [formStatus, setFormStatus] = useState("")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     
     // Here you would typically send the form data to your backend
@@ -190,8 +190,8 @@ const Contact = () => {
                 <h3>Email Us</h3>
                 <p>
                   General Inquiries:<br />
-                  <a href="mailto:support@foodieheaven.com">support@foodieheaven.com</a><br />
-                  <a href="mailto:orders@foodieheaven.com">orders@foodieheaven.com</a>
+                  <a href="mailto:support@epiceats.com">support@epiceats.com</a><br />
+                  <a href="mailto:orders@epiceats.com">orders@epiceats.com</a>
                 </p>
               </div>
 
@@ -248,7 +248,7 @@ const Contact = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Foodie Heaven Location"
+              title="EPIC EATS Location"
             ></iframe>
           </div>
         </div>
