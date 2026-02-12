@@ -1,127 +1,144 @@
-/* Page background */
+/* ═══════════════════════════════════════════════════
+   Auth Pages — Login & Registration
+   Glass Card with Blurred Background
+   ═══════════════════════════════════════════════════ */
+
+/* ── Container ── */
 .register-container {
-  min-height: 85vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-  padding: 20px;
+  justify-content: center;
+  padding: calc(var(--nav-height) + 40px) 5% 60px;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(168, 184, 154, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(197, 209, 188, 0.1) 0%, transparent 55%),
+    var(--bg-cream);
 }
 
-/* Card */
+/* ── Glass Form Card ── */
 .register-form {
-  background: #161616;
-  padding: 35px 30px;
   width: 100%;
-  max-width: 380px;
-  border-radius: 14px;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.9),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  animation: fadeUp 0.6s ease;
+  max-width: 420px;
+  padding: 44px 36px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow-lg);
+  animation: fadeInUp 0.6s var(--ease-out) both;
 }
 
-/* Title */
 .register-form h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--text-primary);
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
 }
 
-/* Inputs */
+/* ── Inputs ── */
 .register-form input {
   width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  border: 1px solid #2a2a2a;
-  font-size: 14px;
-  color: #ffffff;
-  background: #0f0f0f;
-  transition: all 0.25s ease;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all var(--duration-base) var(--ease-smooth);
 }
 
-/* Placeholder */
-.register-form input::placeholder {
-  color: #9a9a9a;
-}
-
-/* Input focus */
 .register-form input:focus {
-  outline: none;
-  border-color: #ff6347;
-  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.25);
-  background: #0f0f0f;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(252, 128, 25, 0.12);
+  background: rgba(255, 255, 255, 0.85);
 }
 
-/* Button */
-.register-form button {
+.register-form input::placeholder {
+  color: var(--text-light);
+}
+
+/* ── Submit Button ── */
+.register-form button[type="submit"] {
   width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: linear-gradient(135deg, #ff6347, #ff3b2f);
-  color: #ffffff;
+  padding: 15px 24px;
+  margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--duration-base) var(--ease-out);
+  box-shadow: 0 6px 18px rgba(252, 128, 25, 0.25);
 }
 
-/* Button hover */
-.register-form button:hover {
+.register-form button[type="submit"]:hover:not(:disabled) {
+  background: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(255, 99, 71, 0.45);
+  box-shadow: 0 8px 24px rgba(252, 128, 25, 0.35);
 }
 
-/* Button active */
-.register-form button:active {
-  transform: scale(0.97);
+.register-form button[type="submit"]:disabled {
+  background: var(--text-light);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* Login text */
-.login-link {
-  text-align: center;
-  margin-top: 18px;
-  font-size: 14px;
-  color: #cccccc;
-}
-
-.login-link a {
-  color: #ff6347;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-
-/* Smooth entrance */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .register-form {
-    padding: 30px 22px;
-  }
-}
+/* ── Error ── */
 .error-text {
-  color: #ff4d4d;
-  font-size: 13px;
-  margin-top: -10px;
+  color: #dc2626;
+  font-size: 0.82rem;
+  margin-top: -8px;
   margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+/* ── Links ── */
+.register-form .login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.register-form .login-link a {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.register-form .login-link a:hover {
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .register-container {
+    padding: calc(var(--nav-height) + 24px) 4% 40px;
+  }
+
+  .register-form {
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
+  }
+
+  .register-form h2 {
+    font-size: 1.7rem;
+    margin-bottom: 22px;
+  }
+
+  .register-form input {
+    padding: 12px 14px;
+    font-size: 0.92rem;
+  }
 }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { submitContact } from "../utils/api.js"
 import "../css/Contact.css"
 
 const Contact = () => {
@@ -11,6 +12,8 @@ const Contact = () => {
   })
 
   const [formStatus, setFormStatus] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
 
   const handleChange = (e) => {
     setFormData({
@@ -19,33 +22,41 @@ const Contact = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData)
-    
-    // Show success message
-    setFormStatus("success")
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: ""
-    })
 
-    // Clear success message after 5 seconds
-    setTimeout(() => {
-      setFormStatus("")
-    }, 5000)
+    setLoading(true)
+    setErrorMsg("")
+
+    try {
+      await submitContact(formData)
+
+      // Show success message
+      setFormStatus("success")
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      })
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus("")
+      }, 5000)
+    } catch (err) {
+      setErrorMsg(err.message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <div className="contact-page">
-      
+
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="contact-hero-content">
@@ -59,7 +70,7 @@ const Contact = () => {
       {/* Contact Content */}
       <section className="contact-content">
         <div className="contact-container">
-          
+
           {/* Contact Form */}
           <div className="contact-form-section">
             <h2>Send Us a Message</h2>
@@ -73,8 +84,14 @@ const Contact = () => {
               </div>
             )}
 
+            {errorMsg && (
+              <div className="error-text" style={{ textAlign: "center", marginBottom: "15px", color: "#ff6b6b" }}>
+                {errorMsg}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="contact-form">
-              
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full Name *</label>
@@ -149,8 +166,8 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-btn">
-                Send Message
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? "Sending..." : "Send Message"}
               </button>
 
             </form>
@@ -164,7 +181,7 @@ const Contact = () => {
             </p>
 
             <div className="contact-info-cards">
-              
+
               <div className="info-card">
                 <div className="info-icon">📍</div>
                 <h3>Visit Us</h3>
@@ -261,11 +278,11 @@ const Contact = () => {
           <p className="faq-intro">Quick answers to common questions</p>
 
           <div className="faq-grid">
-            
+
             <div className="faq-item">
               <h3>What are your delivery hours?</h3>
               <p>
-                We deliver from 9 AM to 11 PM, seven days a week. Some restaurants 
+                We deliver from 9 AM to 11 PM, seven days a week. Some restaurants
                 may have different timings, which will be shown on their menu page.
               </p>
             </div>
@@ -273,7 +290,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>What is the delivery fee?</h3>
               <p>
-                Delivery fees vary based on distance and order value. Orders above 
+                Delivery fees vary based on distance and order value. Orders above
                 ₹500 get free delivery within 5km. You'll see the exact fee at checkout.
               </p>
             </div>
@@ -281,7 +298,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>How can I track my order?</h3>
               <p>
-                Once your order is confirmed, you'll receive a tracking link via SMS 
+                Once your order is confirmed, you'll receive a tracking link via SMS
                 and email. You can also track it live through our app.
               </p>
             </div>
@@ -289,7 +306,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>Do you accept cash on delivery?</h3>
               <p>
-                Yes! We accept cash on delivery, along with UPI, credit/debit cards, 
+                Yes! We accept cash on delivery, along with UPI, credit/debit cards,
                 and digital wallets for your convenience.
               </p>
             </div>
@@ -297,7 +314,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>Can I cancel or modify my order?</h3>
               <p>
-                You can cancel or modify your order within 2 minutes of placing it. 
+                You can cancel or modify your order within 2 minutes of placing it.
                 After that, please contact our support team for assistance.
               </p>
             </div>
@@ -305,7 +322,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>How do I become a restaurant partner?</h3>
               <p>
-                We're always looking for great restaurant partners! Fill out the 
+                We're always looking for great restaurant partners! Fill out the
                 contact form above selecting "Restaurant Partnership" or email us directly.
               </p>
             </div>

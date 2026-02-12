@@ -1,33 +1,49 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
+import { isLoggedIn, removeToken, getStoredUser } from "../utils/api.js"
+import { getCartItemCount } from "../utils/cart.js"
 import "../css/Navbar.css"
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState(null)
+  const [cartCount, setCartCount] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
 
-  // 🔥 VERY IMPORTANT EFFECT
+  // Check auth state on route change
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"))
-    setIsLoggedIn(!!user)
-  }, [location]) // 👈 route change triggers this
+    setLoggedIn(isLoggedIn())
+    setUser(getStoredUser())
+    setCartCount(getCartItemCount())
+  }, [location])
+
+  // Scroll detection for glass navbar transition
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
   const closeMenu = () => setMenuOpen(false)
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedInUser")
-    console.clear()
-    setIsLoggedIn(false)
+    removeToken()
+    setLoggedIn(false)
+    setUser(null)
     closeMenu()
     navigate("/")
   }
 
+  const isAdmin = user?.role === "admin"
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="nav-container">
 
         <Link to="/" className="nav-logo" onClick={closeMenu}>
@@ -62,12 +78,30 @@ const Navbar = () => {
 
           <li className="nav-item">
             <Link to="/cart" className="nav-link cart-link" onClick={closeMenu}>
-              🛒 Cart
+              🛒 Cart{cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
             </Link>
           </li>
 
-          {/* 🔥 AUTH BUTTON */}
-          {!isLoggedIn ? (
+          {loggedIn && (
+            <>
+              <li className="nav-item">
+                <Link to="/orders" className="nav-link" onClick={closeMenu}>Orders</Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/profile" className="nav-link" onClick={closeMenu}>Profile</Link>
+              </li>
+
+              {isAdmin && (
+                <li className="nav-item">
+                  <Link to="/admin" className="nav-link admin-link" onClick={closeMenu}>⚙️ Admin</Link>
+                </li>
+              )}
+            </>
+          )}
+
+          {/* AUTH BUTTON */}
+          {!loggedIn ? (
             <li className="nav-item">
               <Link
                 to="/signup"

@@ -1,0 +1,390 @@
+/* ═══════════════════════════════════════════════════
+   Profile Page — Glass Dashboard
+   ═══════════════════════════════════════════════════ */
+
+/* ── Page ── */
+.profile-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    width: 100%;
+}
+
+/* ── Hero ── */
+.profile-hero {
+    background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-sage-light) 100%);
+    padding: calc(var(--nav-height) + 40px) 6% 36px;
+    text-align: center;
+}
+
+.profile-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s var(--ease-out) both;
+}
+
+.profile-hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-top: 8px;
+    animation: fadeInUp 0.6s var(--ease-out) 0.1s both;
+}
+
+/* ── Content ── */
+.profile-content {
+    padding: 40px 6%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ── Messages ── */
+.profile-msg {
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeInUp 0.4s var(--ease-out) both;
+}
+
+.profile-msg.success {
+    background: rgba(252, 128, 25, 0.1);
+    color: var(--accent-dark);
+    border: 1px solid rgba(252, 128, 25, 0.2);
+}
+
+.profile-msg.error {
+    background: rgba(239, 68, 68, 0.06);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+/* ── Loading ── */
+.profile-loading {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--nav-height);
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   Profile Card — Glass
+   ═══════════════════════════════════════════════════ */
+.profile-card {
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--glass-shadow);
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s var(--ease-out) both;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-default);
+}
+
+.card-header h2 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+}
+
+/* ── Buttons ── */
+.edit-btn {
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+    background: var(--accent-bg);
+    border: 1px solid var(--border-hover);
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.edit-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* ── Profile Info (View Mode) ── */
+.profile-info p {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(44, 44, 44, 0.04);
+}
+
+.profile-info p:last-child {
+    border-bottom: none;
+}
+
+.profile-info strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+/* ── Profile Form (Edit Mode) ── */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 16px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(252, 128, 25, 0.12);
+}
+
+.form-group input.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.save-btn {
+    padding: 11px 24px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+    box-shadow: 0 4px 14px rgba(252, 128, 25, 0.2);
+}
+
+.save-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.cancel-btn {
+    padding: 11px 24px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.cancel-btn:hover {
+    border-color: var(--text-muted);
+    color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════
+   Address Section
+   ═══════════════════════════════════════════════════ */
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--bg-cream);
+    border-radius: var(--radius-md);
+}
+
+.default-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.default-check input {
+    width: auto;
+    accent-color: var(--accent);
+}
+
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.address-card {
+    padding: 16px 18px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-base) var(--ease-smooth);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.address-card:hover {
+    border-color: var(--border-hover);
+}
+
+.address-card.default {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+}
+
+.addr-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.addr-label {
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.default-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+}
+
+.address-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.addr-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.addr-actions button {
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-smooth);
+    border: 1px solid var(--border-default);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
+}
+
+.addr-actions button:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+}
+
+.addr-actions button.del:hover {
+    border-color: #dc2626;
+    color: #dc2626;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.no-addresses {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    padding: 20px;
+}
+
+/* ═══════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .profile-hero {
+        padding: calc(var(--nav-height) + 28px) 5% 28px;
+    }
+
+    .profile-hero h1 {
+        font-size: 2rem;
+    }
+
+    .profile-content {
+        padding: 28px 5%;
+    }
+
+    .profile-card {
+        padding: 22px 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-hero {
+        padding: calc(var(--nav-height) + 20px) 5% 20px;
+    }
+
+    .profile-hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .card-header h2 {
+        font-size: 1.15rem;
+    }
+
+    .profile-card {
+        padding: 18px 14px;
+    }
+}

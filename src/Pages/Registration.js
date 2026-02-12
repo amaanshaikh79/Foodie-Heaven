@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import { registerUser, setToken, setStoredUser } from "../utils/api.js"
 import "../css/Registration.css"
 
 const Registration = () => {
@@ -11,6 +12,7 @@ const Registration = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState({})
+  const [loading, setLoading] = useState(false)
 
   // Form validation
   const validateForm = () => {
@@ -44,54 +46,45 @@ const Registration = () => {
   }
 
   // Submit handler
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!validateForm()) return
 
-    const newUser = {
-      fullName,
-      email,
-      password
-    }
-
-    const users =
-      JSON.parse(localStorage.getItem("foodieUsers")) || []
-
-    // Duplicate email check
-    const alreadyExists = users.some(
-      (user) => user.email === email
-    )
-
-    if (alreadyExists) {
-      setError({ email: "Email already registered" })
-      return
-    }
-
-    // Save user
-    users.push(newUser)
-    localStorage.setItem("foodieUsers", JSON.stringify(users))
-
-    // Console logs (for learning/debug)
-    console.log(" USER REGISTERED SUCCESSFULLY")
-    console.table(newUser)
-    console.log(" ALL REGISTERED USERS:", users)
-
-    // Reset form
-    setFullName("")
-    setEmail("")
-    setPassword("")
-    setConfirmPassword("")
+    setLoading(true)
     setError({})
 
-    // 👉 Redirect to LOGIN page
-    navigate("/login")
+    try {
+      const data = await registerUser({ fullName, email, password })
+
+      // Auto-login: save token and user
+      setToken(data.token)
+      setStoredUser(data.user)
+
+      // Reset form
+      setFullName("")
+      setEmail("")
+      setPassword("")
+      setConfirmPassword("")
+
+      navigate("/hero")
+    } catch (err) {
+      setError({ server: err.message })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Create Account</h2>
+
+        {error.server && (
+          <p className="error-text" style={{ textAlign: "center", marginBottom: "10px" }}>
+            {error.server}
+          </p>
+        )}
 
         <input
           type="text"
@@ -133,7 +126,9 @@ const Registration = () => {
           <p className="error-text">{error.confirmPassword}</p>
         )}
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Signing Up..." : "Sign Up"}
+        </button>
 
         <p className="login-link">
           Already have an account?{" "}
